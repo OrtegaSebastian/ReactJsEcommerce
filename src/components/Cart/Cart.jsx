@@ -1,9 +1,9 @@
-import { CartContext } from "../contexts/CartContext";
+import {  CarritoContext } from "../contexts/CartContext";
 import { useContext } from "react";
-import CartItem from "./CartItem";
+import CarritoItem from "./CartItem";
 
-const Cart = () => {
-  const { cart, VaciarCarrito, PrecioTotal, IconCart } = useContext(CartContext);
+const Carrito = () => {
+  const { carrito , VaciarCarrito, PrecioTotal, IconCart } = useContext( CarritoContext);
   
   // function generarOrden(e) {
   //   e.PreventDefaul()
@@ -13,9 +13,9 @@ const Cart = () => {
   //   orden.total = precioTotal();
     
   //   orden.items = cartList.map(carItem=>
-  //     const id = cartItem.id
-  //     const nombre = cartItem.nombre
-  //     const precio = cartItem.precio * cartItem.cantidad
+  //     const id = carritoItem.id
+  //     const nombre = carritotem.nombre
+  //     const precio = carritoItem.precio * carritoItem.cantidad
       
 
   //     )
@@ -27,11 +27,11 @@ const Cart = () => {
   return (
     <>
     <div >
-    {cart.length < 1 ? (
+    {carrito.length < 1 ? (
         <p>Carrito vacio</p>
     ) : (
-        cart.map((producto) => 
-        <CartItem key={producto.item.id} producto={producto.item} />)
+        carrito.map((producto) => 
+        <CarritoItem key={producto.item.id} producto={producto.item} />)
         )}
     </div>
     <button onClick={VaciarCarrito}> Borrar carrito</button>
@@ -44,4 +44,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default Carrito;

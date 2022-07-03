@@ -1,8 +1,7 @@
 import React from 'react'
-import { Nav, Menu  } from './NavBarComponents'
+import { Nav, Menu,NavBarLink  } from './NavBarComponents'
 import CartWidget from './CartWidget/CartWidget'
-// import { Link } from 'react-router-dom'
-import { NavBarLink } from './NavBarComponents'
+
 
 
 
@@ -17,11 +16,11 @@ const NavBar = () => {
 
         <NavBarLink to="/sobrelaempresa">SOBRE LA EMPRESA</NavBarLink>
 
-        <NavBarLink to="/category/panaderia">PANADERIA</NavBarLink>
+        <NavBarLink to="/categoria/panaderia">PANADERIA</NavBarLink>
 
-        <NavBarLink to="/category/ferreteria">FERRETERIA</NavBarLink>
+        <NavBarLink to="/categoria/ferreteria">FERRETERIA</NavBarLink>
 
-        <NavBarLink to="/category/verduleria">VERDULERIA</NavBarLink>
+        <NavBarLink to="/categoria/verduleria">VERDULERIA</NavBarLink>
 
         <NavBarLink to="Contacto">CONTACTO</NavBarLink>
       </Menu>

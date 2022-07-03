@@ -1,46 +1,46 @@
 import { createContext, useState } from "react";
 
-export const CartContext = createContext([]);
+export const CarritoContext = createContext([]);
 
-const CartContextProvider = ({children })=>{
+const CarritoContextProvider = ({hijo })=>{
     //estados y funciones
-    const [cart, setCart] = useState([])
+    const [carrito, setCarrito] = useState([])
 
-    const AddToCart = (item, cantidad)=>{
+    const AgregarAlCarrito = (item, cantidad)=>{
     
-    if(IsInCart(item.id)){
+    if(EstaEnCarrito(item.id)){
         alert("el producto ya esta en el carrito")
     }else{
-        setCart([...cart, {item,cantidad}])
+        setCarrito([...carrito, {item,cantidad}])
         alert("se agrego el producto", {cantidad})
     }
 }
 
 const DelItem = (id) =>{
-    const items = cart.filter((producto)=> producto.item.id!==id)
-    setCart(items)
+    const items = carrito.filter((producto)=> producto.item.id!==id)
+    setCarrito(items)
     return
 }
-const IconCart = ( )=>{
-    return cart.reduce((acum,i)=> acum +i.cantidad,0)
+const IconCarrito = ( )=>{
+    return carrito.reduce((acum,i)=> acum +i.cantidad,0)
 }
 const PrecioTotal = () => {
-    return cart.reduce((acum, i) => acum + i.cantidad * i.item.precio, 0)
-  }
-  const VaciarCarrito = () =>{
-    return setCart([])
-  }
-
-const IsInCart = (id)=>{
-    return cart&&cart.some((i)=>i.item.id === id)
+    return carrito.reduce((acum, i) => acum + i.cantidad * i.item.precio, 0)
 }
-    return(
-          
-           <CartContext.Provider value={{ AddToCart, cart, VaciarCarrito, DelItem, PrecioTotal, IconCart }}>
-           {children}
-         </CartContext.Provider>
-       );
+const VaciarCarrito = () =>{
+return setCarrito([])
+}
+
+const EstaEnCarrito = (id)=>{
+    return carrito&&carrito.some((i)=>i.item.id === id)
+}
+return(
+        
+        <CarritoContext.Provider value={{ AgregarAlCarrito, carrito, VaciarCarrito, DelItem, PrecioTotal, IconCarrito }}>
+    {hijo}
+    </CarritoContext.Provider>
+    );
         
     
 }
-export default CartContextProvider;
+export default CarritoContextProvider;

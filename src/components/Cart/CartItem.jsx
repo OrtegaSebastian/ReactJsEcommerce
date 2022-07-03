@@ -1,16 +1,16 @@
 import { useContext } from 'react'
-import{CartContext} from "../contexts/CartContext";
+import{ CarritoContext} from "../contexts/CartContext";
 
-const CartItem = ({producto}) => {
-    const {DelItem} = useContext(CartContext);
+const CarritoItem = ({producto}) => {
+    const {delItem} = useContext( CarritoContext);
     const {nombre, precio,id}= producto;
     return (
     <div>
         <h4>{nombre}</h4>
         <h4>{precio}</h4>
-        <button onClick={()=> DelItem(id)}>borrar item</button>
+        <button onClick={()=> delItem(id)}>borrar item</button>
     </div>
     )
 }
 
-export default CartItem
+export default CarritoItem

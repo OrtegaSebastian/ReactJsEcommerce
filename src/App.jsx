@@ -2,25 +2,25 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./components/NavBar";
 import ItemListContainer from "./components/ItemList/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetail/ItemDetailContainer";
-import Cart from "./components/Cart/Cart";
+import Carrito from "./components/Cart/Cart";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import  CartContextProvider  from "./components/contexts/CartContext";
+import  CarritoContextProvider  from "./components/contexts/CartContext";
 
 function App() {
   return (
-    <CartContextProvider>
+    <CarritoContextProvider>
       
     <BrowserRouter>
       <NavBar />
         <Routes>
         <Route path="/" element={<ItemListContainer />} />
-        <Route path="/category/:id" element={<ItemListContainer />} />
+        <Route path="/categoria/:id" element={<ItemListContainer />} />
         <Route path="/detalle/:id" element={<ItemDetailContainer />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/cart" element={<Carrito />} />
       </Routes>
     </BrowserRouter>
    
-    </CartContextProvider>
+    </CarritoContextProvider>
     
   );
 }
