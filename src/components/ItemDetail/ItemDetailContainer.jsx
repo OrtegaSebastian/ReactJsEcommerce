@@ -1,30 +1,31 @@
-import {useEffect, useState} from 'react'
+import { useEffect, useState } from "react";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
+import ItemDetail from "./ItemDetail";
+import { useParams } from "react-router-dom";
 
+const ItemDetailContainer = () => {
+  const [producto, setProducto] = useState([]);
+  const [cargando, setCargando] = useState(false);
+  const { id } = useParams();
 
-import {getFirestore,doc,where,query,getDocs} from "firebase/firestore"
+  useEffect(() => {
+    const db = getFirestore();
+    const productoFiltrado = doc(db, "items", id);
 
+    getDoc(productoFiltrado)
+      .then((resp) => setProducto({ id: resp.id, ...resp.data() }))
+      .catch((err) => console.log(err))
+      .finally(setCargando(false));
+  }, [id]);
 
-
-
-
-const ItemDetailContainer =()=>{
-  const [ productos , setProductos] = useState([]);
-  const [ cargando , setCargando] = useState(false);
-  
-  useEffect(()=>{
- 
-    const db = getFirestore()
-    const queryCollection = doc (db,'items' )
-    
-    const queryCollectionFilter = query(queryCollection, where('categoria','==', '2F8tzrktgM67P7m9khZX' ))
-  
-    getDocs(queryCollectionFilter)
-    .then(resp=>setProductos( {id: resp.id, ...resp.data()}))
-    .catch(err=>console.log(err))
-    .finally(()=>setCargando(false))
-  
-  
-  },[])
- 
-}
-export default ItemDetailContainer
+  return (
+    <>
+      {
+      cargando?
+      <h3>Cargando</h3>
+      :<ItemDetail item={producto} />
+      }
+    </>
+  );
+};
+export default ItemDetailContainer;

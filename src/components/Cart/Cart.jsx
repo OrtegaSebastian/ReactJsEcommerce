@@ -1,29 +1,34 @@
 import {  CarritoContext } from "../contexts/CartContext";
 import { useContext } from "react";
 import CarritoItem from "./CartItem";
+import { getFirestore,addDoc, collection } from "firebase/firestore";
 
 const Carrito = () => {
-  const { carrito , VaciarCarrito, PrecioTotal, IconCart } = useContext( CarritoContext);
-  
-  // function generarOrden(e) {
-  //   e.PreventDefaul()
-  //   let orden ={}
+  const { carrito , VaciarCarrito, PrecioTotal,CarritoItem, IconCarrito } = useContext( CarritoContext);
+  const generarOrden =()=>{
 
-  //   orden.buyer = {producto: 'algo', email: 'nada', numero: '12345'}
-  //   orden.total = precioTotal();
+    const db = getFirestore()
+    const queryCollection = collection(db, "ordenes")   
+    const comprador = {nombre: 'seba', numero:'155333111', email: 'sebastian.ortega@hotmail.com'}
+    const orden = {comprador, carrito,PrecioTotal}
+
+    const pedido = addDoc(queryCollection, orden)
+
+    pedido
+      .then((resp=>{
+          alert("usted ha comprado con exito: " + resp.id)
+      })
+      .catch((error=>{
+        console.log(error)
+      })
+      .finally((resp)=>{
+        VaciarCarrito();
+      })
+
+        
+   
+  }
     
-  //   orden.items = cartList.map(carItem=>
-  //     const id = carritoItem.id
-  //     const nombre = carritotem.nombre
-  //     const precio = carritoItem.precio * carritoItem.cantidad
-      
-
-  //     )
-
-    
-  // }
-  
-
   return (
     <>
     <div >
@@ -33,15 +38,17 @@ const Carrito = () => {
         carrito.map((producto) => 
         <CarritoItem key={producto.item.id} producto={producto.item} />)
         )}
+     <button  className="btn btn-outline-primary"  onClick={generarOrden} >Terminar Compra</button>    
     </div>
-    <button onClick={VaciarCarrito}> Borrar carrito</button>
+    <button onClick={VaciarCarrito} className="btn btn-outline-danger"> Borrar carrito</button>
     <p>El precio total de los productos es {PrecioTotal()} </p>
-    {IconCart() < 1 ? 
+    {IconCarrito() < 1 ? 
     <p> </p>
-    :<p>La cantidad total del carrito es {IconCart()}</p>
+    :<p>La cantidad total del carrito es {IconCarrito()}</p>
     }
     </>
   );
 };
+
 
 export default Carrito;

@@ -9,7 +9,6 @@ import  CarritoContextProvider  from "./components/contexts/CartContext";
 function App() {
   return (
     <CarritoContextProvider>
-      
     <BrowserRouter>
       <NavBar />
         <Routes>
@@ -19,7 +18,6 @@ function App() {
         <Route path="/cart" element={<Carrito />} />
       </Routes>
     </BrowserRouter>
-   
     </CarritoContextProvider>
     
   );
