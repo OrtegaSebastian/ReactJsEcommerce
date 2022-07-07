@@ -17,10 +17,10 @@ const ItemDetail = ({ item }) => {
 
   return (
     <>
-      <div style={{margin:("30px","50px","50px","50px") }} className="col-md6">
+      <div style={{margin:("30px","50px","50px","50px") }} className="col-12">
         <h2>{nombre}</h2>
         <h3>{marca}</h3>
-        <img src={pictureUrl} alt={nombre} />
+        <img src={pictureUrl} alt={nombre}  style={{margin:("30px","50px","50px","50px") }} className="col-4"/>
         <h4>Precio ${precio}</h4>
       <Contar stock={stock}  inicial={1} onAdd={onAdd} />
         <p>Unidades disponibles = {stock}</p>
