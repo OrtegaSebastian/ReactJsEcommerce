@@ -14,7 +14,7 @@ const NavBar = () => {
       <Menu>
         <NavBarLink to="/">INICIO</NavBarLink>
 
-        <NavBarLink to="/sobrelaempresa">SOBRE LA EMPRESA</NavBarLink>
+        <NavBarLink to="/categoria/almacen">ALMACEN</NavBarLink>
 
         <NavBarLink to="/categoria/panaderia">PANADERIA</NavBarLink>
 
@@ -22,8 +22,7 @@ const NavBar = () => {
 
         <NavBarLink to="/categoria/verduleria">VERDULERIA</NavBarLink>
 
-        <NavBarLink to="Contacto">CONTACTO</NavBarLink>
-      </Menu>
+    </Menu>
     </Nav>
   );
 }
